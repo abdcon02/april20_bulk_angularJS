@@ -1,39 +1,50 @@
-var bulk.controller('BulkCtrl', function BulkCtrl($scope) {
+bulkBuy.controller('BulkCtrl', function BulkCtrl($scope) {
     $scope.order = [];
     $scope.percentage = 0.00;
-
     var itemPrice = 1.00;
+    var discountPrice = 0;
+    var totalPrice = 0;
 
     $scope.addOrder = function() {
         $scope.order.push({ amount: $scope.amount });
         $scope.amount = null;
     };
 
-    $scope.discount = function() {
-        if (($scope.order[0] > 100) && ($scope.order[0] < 500)) {
-            $scope.percentage = 0.01
+    $scope.discount = function(order) {
+        var percentage;
+
+        if (order.amount <= 100) {
+            percentage = 0.00
         }
-        if (($scope.order[0] >= 500) && ($scope.order[0] < 1000)) {
-            $scope.percentage = 0.05
+        if ((order.amount > 100) && (order.amount < 500)) {
+            percentage = 0.01
         }
-        if (($scope.order[0] >= 1000) && ($scope.order[0] < 5000)) {
-            $scope.percentage = 0.10
+        if ((order.amount >= 500) && (order.amount < 1000)) {
+            percentage = 0.05
         }
-        if (($scope.order[0] >= 5000) && ($scope.order[0] < 20000)) {
-            $scope.percentage = 0.20
+        if ((order.amount >= 1000) && (order.amount < 5000)) {
+            percentage = 0.10
         }
-        if ($scope.order[0] >= 20000) {
-            $scope.percentage = 0.30
+        if ((order.amount >= 5000) && (order.amount < 20000)) {
+            percentage = 0.20
+        }
+        if (order.amount >= 20000) {
+            percentage = 0.30
         }
 
-        var discountPrice = itemPrice - $scope.percentage;
+        discountPrice = itemPrice - percentage;
 
         return discountPrice;
+    };
+
+    $scope.orderPrice = function(order) {
+        totalPrice = discountPrice * order.amount;
+        return parseFloat(totalPrice).toFixed(2);
 
     };
 
-    $scope.orderPrice = function() {
-        return discountPrice * $scope.order[0];
+    $scope.deleteOrder = function(order) {
+        $scope.order = [];
     };
 
 });

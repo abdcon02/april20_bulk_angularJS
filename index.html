@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang='en' ng-app='bulk'>
+<html lang='en' ng-app='bulkBuy'>
     <head>
         <meta charset="UTF-8">
         <title>Bulk Buy</title>
-        <script src="js/app.js"></script>
         <script src="lib/angular.js"></script>
+        <script src="js/app.js"></script>
         <script src="js/BulkController.js"></script>
         <link rel='stylesheet' href="css/bootstrap.min.css" type='text/css'>
     </head>
@@ -29,6 +29,32 @@
                     </form>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Shopping Cart</h2>
+                    <ul>
+                      <li ng-repeat="item in order">
+                        <span ng-click="editing = true" ng-hide="editing">
+                          {{ item.amount }} popcorn kernels <button class="btn btn-xs btn-warning" ng-click="deleteOrder(item)">Delete</button>
+                        </span>
+                            <ul>
+                                <li>${{ discount(item) }} / kernel </li>
+                                <li>${{ orderPrice(item) }} total</li>
+
+                            </ul>
+                        <span class="form-group" ng-show="editing" ng-submit="editing = false">
+                          <form class="form-inline" role="form">
+                            <input type="text" class="form-control input-sm" ng-model="item.amount" placeholder="Amount" required/>
+                            <button class="btn btn-default btn-sm" type="submit">Save</button>
+                          </form>
+                        </span>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+
+
 
         </div>
     </body>

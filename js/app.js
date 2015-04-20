@@ -1,1 +1,1 @@
-var bulk = angular.module('bulk', []);
+var bulkBuy = angular.module('bulkBuy', []);
