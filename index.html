@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='bulk'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bulk Buy</title>
+        <script src="js/app.js"></script>
+        <script src="lib/angular.js"></script>
+        <script src="js/BulkController.js"></script>
+        <link rel='stylesheet' href="css/bootstrap.min.css" type='text/css'>
+    </head>
+    <body>
+        <div class="container" ng-controller="BulkCtrl">
+
+            <h2>Pete's Popcorn Parlor</h2>
+            <p>Here at Pete's Popcorn Parlor, we pride ourselves on procuring only the best popcorn kernels for our customers west of the Mississippi.</p>
+            <p>Any type of popcorn you're looking to create-- whether it's classic buttery popcorn, cheesy popcorn, caramel popcorn, kettle corn, or some other popcorn we haven't even heard of yet,
+                Pete's Popcorn Parlor has just the kernels you're looking for!</p>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Order Popcorn:</h3>
+                    <form ng-submit="addOrder()" class="form-inline" role="form">
+                        <div class="form-group">
+                            <label for="order">How many kernels would you like?</label><br>
+                            <input type="number" ng-model="amount" class="form-control" placeholder="Enter amount">
+                            <button type="submit" class="btn btn-info">Submit</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
